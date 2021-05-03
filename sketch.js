@@ -6,10 +6,10 @@ class Node{
     this.id = id;
     this.num_links = num_links;
     this.links = [];
-    this.xpos = random(windowWidth*3);
-    this.ypos = random(windowHeight*3);
-  
-
+    // this.xpos = random(windowWidth*3);
+    // this.ypos = random(windowHeight*3);
+    this.xpos = random(windowWidth * 2);
+    this.ypos = random(windowHeight);
   }
 
   attach_nodes(neighbor){
@@ -32,7 +32,6 @@ class Node{
     noStroke();
     circle(this.xpos, this.ypos, this.num_links);
   }
-
 }
 
 function test(number_nodes){
@@ -78,6 +77,7 @@ function loadFileAsText(){
 // Parses the input file
 function parse_input(){
   let neighborhoods = new Map();
+  let node_list = [];
   array_size = result.length;
   // console.log("array_size: " + array_size);
   let i = 0;
@@ -101,6 +101,7 @@ function parse_input(){
     }
 
     current_node = current[0];
+    node_list.push(current_node);
     num_neighbors = current[1];
 
     console.log("current node: " + current_node)
@@ -110,17 +111,42 @@ function parse_input(){
     i += 1;
     for(let j = 0; j < num_neighbors; j++){
       // console.log("j: " + j)
+
+      // Adding node to list of nodes
+      node_list.push(result[i])
+
+      // Adding neighbors to list
       current_neighborhood.push(result[i++]);
     }
     console.log("current_neighborhood: " + current_neighborhood)
+    // Mapping the current_node to its neighborhood
     neighborhoods.set(current_node, current_neighborhood);
   }
 
   console.log("\n\nNeighborhoods: " + neighborhoods)
 
-  return neighborhoods;
+  // Removes duplicates nodes from node_list
+  node_list = [...new Set(node_list)];
+
+  return [neighborhoods, node_list];
 
 }
+
+function load_network(node_list,map){
+  for (node in node_list){
+    // TODO
+    //  Make each id a hash code -> need to migrate to node.js
+    // Create node object
+    node = new Node(node, node, 100);
+    node.show_aa()
+  }
+  // map.forEach(
+  //   function(value,key){
+      
+  //   }
+  // )
+}
+
 
 let result;
 function preload(){
@@ -135,11 +161,18 @@ function setup_canvas(){
 }
 function setup() {
   setup_canvas();
-  mapping = parse_input()
 
+  res_arr = parse_input()
+  mapping = res_arr[0];
+  node_list = res_arr[1];
+  
+
+  console.log("node_list: " + node_list);
+  console.log("mapping: \n")
   mapping.forEach(function(value, key){
     console.log(key + " = " + value);
   });
+  load_network(node_list, mapping);
   // test(50);
 }
 
