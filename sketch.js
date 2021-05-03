@@ -6,8 +6,8 @@ class Node{
     this.id = id;
     this.num_links = num_links;
     this.links = [];
-    this.xpos = random(windowWidth*2);
-    this.ypos = random(windowHeight);
+    this.xpos = random(windowWidth*3);
+    this.ypos = random(windowHeight*3);
   
 
   }
@@ -63,13 +63,13 @@ function test(number_nodes){
 }
 
 function setup_canvas(){
-  createCanvas(windowWidth* 2,windowHeight);
+  createCanvas(windowWidth* 3,windowHeight*3);
   background(255);
 
 }
 function setup() {
   setup_canvas();
-  test(100);
+  test(50);
 
 
 }
