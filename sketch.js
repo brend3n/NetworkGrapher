@@ -58,8 +58,74 @@ function test(number_nodes){
   // node_arr[30].show_aa();
 
   // node_arr[31].add_link(node_arr[30]);
+}
 
-  
+// Not done yet... but would like to implement it
+function loadFileAsText(){
+  var fileToLoad = document.getElementById("fileToLoad").files[0];
+
+  var fileReader = new FileReader();
+  fileReader.onload = function(fileLoadedEvent){
+      var textFromFileLoaded = fileLoadedEvent.target.result;
+      document.getElementById("inputTextToSave").value = textFromFileLoaded;
+  };
+
+  fileReader.readAsText(fileToLoad, "UTF-8");
+
+  console.log(fileReader.result);
+}
+
+// Parses the input file
+function parse_input(){
+  let neighborhoods = new Map();
+  array_size = result.length;
+  // console.log("array_size: " + array_size);
+  let i = 0;
+  let count= 1;
+
+  // Loop through the array
+  while(true){
+    // Get first line of neighbor hood
+    /*
+      current[0] = node
+      current[1] = # adjacent nodes
+    */
+    try{
+      current = result[i].split(" ");
+      
+    } catch(err){break;}
+    print(current)
+    print(current.length)
+    if(current.length != 2){
+      break;
+    }
+
+    current_node = current[0];
+    num_neighbors = current[1];
+
+    console.log("current node: " + current_node)
+    console.log("num_neighbors: " + num_neighbors)
+    // Split to get the number of adjacent nodes
+    current_neighborhood = []
+    i += 1;
+    for(let j = 0; j < num_neighbors; j++){
+      // console.log("j: " + j)
+      current_neighborhood.push(result[i++]);
+    }
+    console.log("current_neighborhood: " + current_neighborhood)
+    neighborhoods.set(current_node, current_neighborhood);
+  }
+
+  console.log("\n\nNeighborhoods: " + neighborhoods)
+
+  return neighborhoods;
+
+}
+
+let result;
+function preload(){
+  result = loadStrings("output.txt");
+  console.log(result)
 }
 
 function setup_canvas(){
@@ -69,9 +135,12 @@ function setup_canvas(){
 }
 function setup() {
   setup_canvas();
-  test(50);
+  mapping = parse_input()
 
-
+  mapping.forEach(function(value, key){
+    console.log(key + " = " + value);
+  });
+  // test(50);
 }
 
 // // Does a cool thing!
