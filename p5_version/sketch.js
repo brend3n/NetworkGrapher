@@ -30,7 +30,12 @@ class Node{
     let c = color(random(0,255),random(0,255),random(0,255));
     fill(c);
     noStroke();
-    circle(this.xpos, this.ypos, this.num_links);
+    circle(this.xpos, this.ypos, this.num_links*2);
+
+    c = 0;
+    fill(0)
+    textSize(100)
+    text(this.name, this.xpos*1.1, this.ypos)
   }
 }
 
