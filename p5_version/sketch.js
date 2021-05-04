@@ -1,22 +1,17 @@
-
+var dragging = false;
 class Node{
 
   constructor(name, id, num_links){
     this.name = name;
     this.id = id;
     this.num_links = num_links;
+
     this.links = [];
-    // this.xpos = random(windowWidth*3);
-    // this.ypos = random(windowHeight*3);
+ 
     this.xpos = random(windowWidth);
     this.ypos = random(windowHeight);
-    this.radius = 100;
-
-
-    this.offsetX = 0;
-    this,this.offsetY = 0;
-    this.dragging = false;
-    this.rollover = false;
+    this.diameter = 100;
+    // this.dragging = false;
   }
 
   attach_nodes(neighbor){
@@ -35,48 +30,18 @@ class Node{
 
   show_aa(px, py){
 
-    if (this.dragging) {
-      this.x = px + this.offsetX;
-      this.y = py + this.offsetY;
-    }
-
     let c = color(random(0,255),random(0,255),random(0,255));
     fill(c);
     noStroke();
-    circle(this.xpos, this.ypos, this.num_links*2);
+    ellipse(this.xpos, this.ypos, this.diameter, this.diameter);
 
     c = 0;
     fill(0)
     textSize(100)
     text(this.name, this.xpos, this.ypos)
   }
-
-  pressed(px, py) {
-    if (px > this.xpos && px < this.xpos + this.width && py > this.ypos && py < this.ypos + this.height) {
-      print("mouse clicked");
-      this.dragging = true;
-      this.offsetX = this.xpos - px;
-      // print(this.offsetX);
-      this.offsetY = this.ypos - py;
-      // print(this.offsetY);
-    }
-  }
-
-  notPressed(px, py) {
-    	print("mouse was released");
-      this.dragging = false;
-  }
-
 }
 
-
-function mousePressed() {
-  rectangle.pressed(mouseX, mouseY);
-}
-
-function mouseReleased() {
-  rectangle.notPressed();
-}
 
 
 function test(number_nodes){
@@ -103,9 +68,6 @@ function test(number_nodes){
 
   // node_arr[31].add_link(node_arr[30]);
 }
-
-
-
 
 // Not done yet... but would like to implement it
 function loadFileAsText(){
@@ -187,6 +149,7 @@ function load_network(node_list,neighborhood_map){
   for (i in node_list){
     // Create node object
     print("node_name: " + node_list[i])
+    global_node_list.push(node_list[i]);
     node = new Node(node_list[i], i, 100)
     node_objs.set(node_list[i], node)
     node.show_aa()
@@ -206,6 +169,8 @@ function load_network(node_list,neighborhood_map){
       }
     }
   }
+
+  
 }
 
 
@@ -238,10 +203,28 @@ function setup() {
   // test(50);
 }
 
-// // Does a cool thing!
-// function draw() {
-//   test(10);
-// }
+// Returns the node object that is clicked or selected
+function selectedNode(){
+  // TODO
+}
+
+function mousePressed(){
+  if(dist(this.x, this.y, mouseX, mouseY) < this.diameter/2){
+    this.dragging = true;
+  }
+}
+
+function mouseReleased(){
+  this.dragging = false;
+}
+
+var global_node_list = [];
 
 function draw(){
+  for(i in global_node_list){
+    if (global_node_list[i].dragging == true){
+      global_node_list.xpos = mouseX;
+      global_node_list.ypos = mouseY;
+    }
+  }
 }
