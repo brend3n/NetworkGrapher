@@ -221,10 +221,13 @@ function mouseReleased(){
 var global_node_list = [];
 
 function draw(){
-  for(i in global_node_list){
-    if (global_node_list[i].dragging == true){
-      global_node_list.xpos = mouseX;
-      global_node_list.ypos = mouseY;
-    }
-  }
+  // for(i in global_node_list){
+  //   if (global_node_list[i].dragging == true){
+  //     global_node_list.xpos = mouseX;
+  //     global_node_list.ypos = mouseY;
+  //   }
+  // }
+  
+
+  // PUT SHOW FUNCTION IN HERE SO IT CAN UPDATE
 }
