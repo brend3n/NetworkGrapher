@@ -1,5 +1,6 @@
 
 class Node{
+
   constructor(name, id, num_links){
     this.name = name;
     this.id = id;
@@ -7,8 +8,15 @@ class Node{
     this.links = [];
     // this.xpos = random(windowWidth*3);
     // this.ypos = random(windowHeight*3);
-    this.xpos = random(windowWidth * 2);
+    this.xpos = random(windowWidth);
     this.ypos = random(windowHeight);
+    this.radius = 100;
+
+
+    this.offsetX = 0;
+    this,this.offsetY = 0;
+    this.dragging = false;
+    this.rollover = false;
   }
 
   attach_nodes(neighbor){
@@ -25,7 +33,13 @@ class Node{
     this.attach_nodes(neighbor);
   }
 
-  show_aa(){
+  show_aa(px, py){
+
+    if (this.dragging) {
+      this.x = px + this.offsetX;
+      this.y = py + this.offsetY;
+    }
+
     let c = color(random(0,255),random(0,255),random(0,255));
     fill(c);
     noStroke();
@@ -34,9 +48,36 @@ class Node{
     c = 0;
     fill(0)
     textSize(100)
-    text(this.name, this.xpos*1.1, this.ypos)
+    text(this.name, this.xpos, this.ypos)
   }
+
+  pressed(px, py) {
+    if (px > this.xpos && px < this.xpos + this.width && py > this.ypos && py < this.ypos + this.height) {
+      print("mouse clicked");
+      this.dragging = true;
+      this.offsetX = this.xpos - px;
+      // print(this.offsetX);
+      this.offsetY = this.ypos - py;
+      // print(this.offsetY);
+    }
+  }
+
+  notPressed(px, py) {
+    	print("mouse was released");
+      this.dragging = false;
+  }
+
 }
+
+
+function mousePressed() {
+  rectangle.pressed(mouseX, mouseY);
+}
+
+function mouseReleased() {
+  rectangle.notPressed();
+}
+
 
 function test(number_nodes){
   let node_arr = [];
@@ -62,6 +103,9 @@ function test(number_nodes){
 
   // node_arr[31].add_link(node_arr[30]);
 }
+
+
+
 
 // Not done yet... but would like to implement it
 function loadFileAsText(){
@@ -141,8 +185,6 @@ function load_network(node_list,neighborhood_map){
   node_objs = new Map();
   console.log("node_list: " + node_list)
   for (i in node_list){
-    // TODO
-    // Make each id a hash code -> need to migrate to node.js
     // Create node object
     print("node_name: " + node_list[i])
     node = new Node(node_list[i], i, 100)
@@ -150,19 +192,11 @@ function load_network(node_list,neighborhood_map){
     node.show_aa()
   }
 
-  
-
-  // for (node in node_list){
-  //   if (neighborhood_map.has(node_list[node])){
-  //     neighborhood = neighborhood_map.get(node_list[node])
-  //     for (neighbor in neighborhood){
-  //       node_list[node].add_link(neighborhood[neighbor])
-  //     }
-  //   }
-  // }
-
   for(let i = 0 ; i < node_list.length; i++){
+    // Get the node object from the node_name -> node_object mapping
     node = node_objs.get(node_list[i]);
+
+    // Get the name of the current
     node_name = node_list[i];
     if(neighborhood_map.has(node_name)){
       console.log("node: " + node_name);
@@ -182,7 +216,7 @@ function preload(){
 }
 
 function setup_canvas(){
-  createCanvas(windowWidth* 3,windowHeight*3);
+  createCanvas(windowWidth,windowHeight);
   background(255);
 
 }
@@ -199,6 +233,7 @@ function setup() {
   mapping.forEach(function(value, key){
     console.log(key + " = " + value);
   });
+
   load_network(node_list, mapping);
   // test(50);
 }
