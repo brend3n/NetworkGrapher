@@ -1,6 +1,5 @@
 
 class Node{
-
   constructor(name, id, num_links){
     this.name = name;
     this.id = id;
@@ -13,14 +12,14 @@ class Node{
   }
 
   attach_nodes(neighbor){
-    console.log("attach_nodes");
+    // console.log("attach_nodes");
     stroke(100);
     line(this.xpos, this.ypos, neighbor.xpos, neighbor.ypos);
   }
 
   // Add a new neighbor to the current node's neighborhood
   add_link(neighbor){
-    console.log("add_link");
+    console.log(`Adding ${this.name} -> ${neighbor.name}`);
     this.num_links++;
     this.links.push(neighbor);
     this.attach_nodes(neighbor);
@@ -115,8 +114,7 @@ function parse_input(){
     current_neighborhood = []
     i += 1;
     for(let j = 0; j < num_neighbors; j++){
-      // console.log("j: " + j)
-
+      node = new Node(result[i],i, 0);
       // Adding node to list of nodes
       node_list.push(result[i])
 
@@ -137,19 +135,43 @@ function parse_input(){
 
 }
 
-function load_network(node_list,map){
-  for (node in node_list){
+
+function load_network(node_list,neighborhood_map){
+
+  node_objs = new Map();
+  console.log("node_list: " + node_list)
+  for (i in node_list){
     // TODO
-    //  Make each id a hash code -> need to migrate to node.js
+    // Make each id a hash code -> need to migrate to node.js
     // Create node object
-    node = new Node(node, node, 100);
+    print("node_name: " + node_list[i])
+    node = new Node(node_list[i], i, 100)
+    node_objs.set(node_list[i], node)
     node.show_aa()
   }
-  // map.forEach(
-  //   function(value,key){
-      
+
+  
+
+  // for (node in node_list){
+  //   if (neighborhood_map.has(node_list[node])){
+  //     neighborhood = neighborhood_map.get(node_list[node])
+  //     for (neighbor in neighborhood){
+  //       node_list[node].add_link(neighborhood[neighbor])
+  //     }
   //   }
-  // )
+  // }
+
+  for(let i = 0 ; i < node_list.length; i++){
+    node = node_objs.get(node_list[i]);
+    node_name = node_list[i];
+    if(neighborhood_map.has(node_name)){
+      console.log("node: " + node_name);
+      neighborhood = neighborhood_map.get(node_name);
+      for (j in neighborhood){
+        node.add_link(node_objs.get(neighborhood[j]));
+      }
+    }
+  }
 }
 
 
