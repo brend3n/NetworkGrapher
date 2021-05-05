@@ -12,6 +12,7 @@ class Node{
     this.ypos = random(windowHeight);
     this.diameter = 100;
     this.dragging = false;
+    this.changed = false;
   }
 
   attach_nodes(neighbor){
@@ -49,11 +50,11 @@ class Node{
   }
 
   display(px, py){
-    if (this.dragging){
-      console.log("Mousing is dragging")
-      this.xpos = mouseX;
-      this.ypos = mouseY;
-    }
+    // if (this.dragging){
+    //   console.log("Mousing is dragging")
+    //   this.xpos = mouseX;
+    //   this.ypos = mouseY;
+    // }
     this.display_node()
     this.display_links()
   }
@@ -230,6 +231,7 @@ function mousePressed(){
   for (i in global_node_list){
     if(dist(global_node_list[i].xpos, global_node_list[i].ypos, mouseX, mouseY) < global_node_list[i].diameter/2){
       global_node_list[i].dragging = true;
+      return;
     }
   }
   // if(dist(this.x, this.y, mouseX, mouseY) < this.diameter/2){
@@ -253,11 +255,21 @@ function draw(){
   //     global_node_list.ypos = mouseY;
   //   }
   // }
-
-  // Need to fix the coloring of each node
-  for(i in global_node_list){
+  for (i in global_node_list){
+    if (global_node_list[i].dragging){
+      console.log("Mousing is dragging")
+      global_node_list[i].xpos = mouseX;
+      global_node_list[i].ypos = mouseY;
+    }
     global_node_list[i].display();
   }
+
+  // // Need to fix the coloring of each node
+  // for(i in global_node_list){
+  //   noStroke()
+
+  //   global_node_list[i].display();
+  // }
   
 
   // PUT SHOW FUNCTION IN HERE SO IT CAN UPDATE
