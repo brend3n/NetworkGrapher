@@ -49,6 +49,11 @@ class Node{
   }
 
   display(px, py){
+    if (this.dragging){
+      console.log("Mousing is dragging")
+      this.xpos = mouseX;
+      this.ypos = mouseY;
+    }
     this.display_node()
     this.display_links()
   }
