@@ -6,31 +6,31 @@ class Node{
     this.id = id;
     this.num_links = num_links;
 
-    this.links = [];
+    this.neighbors = [];
  
     this.xpos = random(windowWidth);
     this.ypos = random(windowHeight);
     this.diameter = 100;
-    // this.dragging = false;
+    this.dragging = false;
   }
 
   attach_nodes(neighbor){
     // console.log("attach_nodes");
-    stroke(100);
-    line(this.xpos, this.ypos, neighbor.xpos, neighbor.ypos);
+    this.neighbors.push(neighbor);
+
+    // This was migrated to the display links class method
+    // line(this.xpos, this.ypos, neighbor.xpos, neighbor.ypos);
   }
 
   // Add a new neighbor to the current node's neighborhood
   add_link(neighbor){
     console.log(`Adding ${this.name} -> ${neighbor.name}`);
     this.num_links++;
-    this.links.push(neighbor);
     this.attach_nodes(neighbor);
   }
 
-  show_aa(px, py){
-
-    let c = color(random(0,255),random(0,255),random(0,255));
+  display_node(){
+    let c = color(200,100,0);
     fill(c);
     noStroke();
     ellipse(this.xpos, this.ypos, this.diameter, this.diameter);
@@ -39,6 +39,18 @@ class Node{
     fill(0)
     textSize(100)
     text(this.name, this.xpos, this.ypos)
+  }
+
+  display_links(){
+    for(i in this.neighbors){
+      stroke(100);
+      line(this.xpos, this.ypos, this.neighbors[i].xpos, this.neighbors[i].ypos);
+    }
+  }
+
+  display(px, py){
+    this.display_node()
+    this.display_links()
   }
 }
 
@@ -57,14 +69,14 @@ function test(number_nodes){
     // fill(c);
     // noStroke();
     // circle(node_arr[i].xpos, node_arr[i].ypos, node_arr[i].diameter);
-    node_arr[i].show_aa();
+    node_arr[i].display();
   }
 
   for(let i = 1; i < number_nodes; i++){
     node_arr[i].add_link(node_arr[i-1]);
   }
-  // node_arr[31].show_aa();
-  // node_arr[30].show_aa();
+  // node_arr[31].display();
+  // node_arr[30].display();
 
   // node_arr[31].add_link(node_arr[30]);
 }
@@ -149,10 +161,10 @@ function load_network(node_list,neighborhood_map){
   for (i in node_list){
     // Create node object
     print("node_name: " + node_list[i])
-    global_node_list.push(node_list[i]);
     node = new Node(node_list[i], i, 100)
+    global_node_list.push(node);
     node_objs.set(node_list[i], node)
-    node.show_aa()
+    // node.display()
   }
 
   for(let i = 0 ; i < node_list.length; i++){
@@ -193,11 +205,11 @@ function setup() {
   node_list = res_arr[1];
   
 
-  console.log("node_list: " + node_list);
-  console.log("mapping: \n")
-  mapping.forEach(function(value, key){
-    console.log(key + " = " + value);
-  });
+  // console.log("node_list: " + node_list);
+  // console.log("mapping: \n")
+  // mapping.forEach(function(value, key){
+  //   console.log(key + " = " + value);
+  // });
 
   load_network(node_list, mapping);
   // test(50);
@@ -219,7 +231,7 @@ function mouseReleased(){
 }
 
 var global_node_list = [];
-
+var selected_node;
 function draw(){
   // for(i in global_node_list){
   //   if (global_node_list[i].dragging == true){
@@ -227,6 +239,11 @@ function draw(){
   //     global_node_list.ypos = mouseY;
   //   }
   // }
+
+  // Need to fix the coloring of each node
+  for(i in global_node_list){
+    global_node_list[i].display();
+  }
   
 
   // PUT SHOW FUNCTION IN HERE SO IT CAN UPDATE
