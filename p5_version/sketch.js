@@ -6,6 +6,7 @@ class Node{
     this.name = name;
     this.id = id;
     this.num_links = num_links;
+    this.color = color(random(255),random(255),random(255));
 
     this.neighbors = [];
  
@@ -32,7 +33,7 @@ class Node{
   }
 
   display_node(){
-    let c = color(200,100,0);
+    let c = this.color
     fill(c);
     noStroke();
     ellipse(this.xpos, this.ypos, this.diameter, this.diameter);
