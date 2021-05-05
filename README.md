@@ -18,7 +18,6 @@ neighbor_3<br>
 ...<br>
 neighbor_n<br>
 
-<br>
 ### Example
 <br>Spongebob 3<br>
 Patrick<br>
