@@ -13,18 +13,16 @@ Currently, all input must follow an adjacency list representation. In the future
 ### Input Format
 <br>
 node_name n (where n is the number of neighbors to the node)
-<br>
 neighbor_1<br>
-<br>
 neighbor_2<br>
-<br>
 neighbor_3<br>
-<br>
 ...<br>
 neighbor_n<br>
 
 <br>
 Example<br>
+
+
 Spongebob 3<br>
 Patrick<br>
 Sandy<br>
