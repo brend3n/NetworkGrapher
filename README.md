@@ -13,19 +13,19 @@ Currently, all input must follow an adjacency list representation. In the future
 ### Input Format
 `
 node_name n (where n is the number of neighbors to the node)
-neighbor_1
-neighbor_2
-neighbor_3
-...
-neighbor_n
+neighbor_1<br>
+neighbor_2<br>
+neighbor_3<br>
+...<br>
+neighbor_n<br>
 `
-Example
-Spongebob 3
-Patrick
-Sandy
-Squidward
-Mr.Krabs 1
-Pearl
+Example<br>
+Spongebob 3<br>
+Patrick<br>
+Sandy<br>
+Squidward<br>
+Mr.Krabs 1<br>
+Pearl<br>
 
 
 
