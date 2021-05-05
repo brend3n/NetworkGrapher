@@ -1,4 +1,5 @@
 var dragging = false;
+var dragging_node;
 class Node{
 
   constructor(name, id, num_links){
@@ -231,7 +232,8 @@ function mousePressed(){
   for (i in global_node_list){
     if(dist(global_node_list[i].xpos, global_node_list[i].ypos, mouseX, mouseY) < global_node_list[i].diameter/2){
       global_node_list[i].dragging = true;
-      return;
+      dragging_node = global_node_list[i];
+      break;
     }
   }
   // if(dist(this.x, this.y, mouseX, mouseY) < this.diameter/2){
@@ -241,14 +243,18 @@ function mousePressed(){
 
 function mouseReleased(){
   print("mouseReleased")
-  for(i in global_node_list){
-    global_node_list[i].dragging = false;
-  }
+  // for(i in global_node_list){
+  //   global_node_list[i].dragging = false;
+  // }
+  dragging_node.dragging = false;
 }
 
 var global_node_list = [];
 var selected_node;
 function draw(){
+  // This line fixes the dragging issue where it would show each frame of dragging
+  background("lightskyblue");
+
   // for(i in global_node_list){
   //   if (global_node_list[i].dragging == true){
   //     global_node_list.xpos = mouseX;
