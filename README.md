@@ -11,7 +11,6 @@ p5 JS: https://p5js.org/download/
 Currently, all input must follow an adjacency list representation. In the future, I would like to allow for adjacency matrix representation of graphs, however, those usually require more storage.
 
 ### Input Format
-<br>
 <br>node_name n (where n is the number of neighbors to the node)
 neighbor_1<br>
 neighbor_2<br>
@@ -20,9 +19,7 @@ neighbor_3<br>
 neighbor_n<br>
 
 <br>
-Example
-<br>
-
+### Example
 <br>Spongebob 3<br>
 Patrick<br>
 Sandy<br>
