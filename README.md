@@ -26,6 +26,9 @@ Squidward<br>
 Mr.Krabs 1<br>
 Pearl<br>
 
+#### Resultant Graph Output
+
+![NetworkGrapherExample](https://user-images.githubusercontent.com/49283761/117202997-81ea3980-adbc-11eb-8b5d-767db98018ed.png)
 
 
 ### To-Do
