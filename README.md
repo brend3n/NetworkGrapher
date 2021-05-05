@@ -1,5 +1,8 @@
 # NetworkGrapher
 
+NetworkGrapher is a network or graph visualizer created with the p5 Javascript library. The aim of this is to easily visualize networks on a web application. After having trouble with importing data into network visualization software like Cytoscape, NetworkGrapher was created to easily load in a network from a text file.
+
+
 
 ### To-Do
 - [ ] Nodes are colored based on neighborhoods
