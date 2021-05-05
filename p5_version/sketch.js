@@ -226,13 +226,22 @@ function selectedNode(){
 }
 
 function mousePressed(){
-  if(dist(this.x, this.y, mouseX, mouseY) < this.diameter/2){
-    this.dragging = true;
+  print("mousePressed")
+  for (i in global_node_list){
+    if(dist(global_node_list[i].xpos, global_node_list[i].ypos, mouseX, mouseY) < global_node_list[i].diameter/2){
+      global_node_list[i].dragging = true;
+    }
   }
+  // if(dist(this.x, this.y, mouseX, mouseY) < this.diameter/2){
+  //   this.dragging = true;
+  // }
 }
 
 function mouseReleased(){
-  this.dragging = false;
+  print("mouseReleased")
+  for(i in global_node_list){
+    global_node_list[i].dragging = false;
+  }
 }
 
 var global_node_list = [];
