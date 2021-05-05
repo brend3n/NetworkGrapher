@@ -20,8 +20,8 @@ neighbor_3<br>
 neighbor_n<br>
 
 <br>
-Example<br>
-
+Example
+<br>
 
 Spongebob 3<br>
 Patrick<br>
