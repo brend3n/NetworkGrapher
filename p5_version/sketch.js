@@ -254,7 +254,7 @@ var global_node_list = [];
 var selected_node;
 function draw(){
   // This line fixes the dragging issue where it would show each frame of dragging
-  background("lightskyblue");
+  background("white");
 
   // for(i in global_node_list){
   //   if (global_node_list[i].dragging == true){
