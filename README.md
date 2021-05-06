@@ -33,9 +33,11 @@ Pearl<br>
 
 ### To-Do
 - [ ] Host code on server
-- [ in progress ] Nodes are colored based on neighborhoods
+- [ ] Nodes are colored based on neighborhoods
+- [ ] Group nodes in the same neighborhood close to eachother -> adjust randomness of node location
 - [ ] If one nodes is in two or more different groups, blend the colors together for that node
 - [ ] Keep track of information about the network
 - [ ] Unlimited scrolling 
 - [ ] Dyanmic loading such that large amounts of data can be visualized incrementally
-- [ ] Group nodes in the same neighborhood close to eachother -> adjust randomness of node location
+- [ ] Zooming out/in changes the size of the node in order to see more nodes in a window
+
