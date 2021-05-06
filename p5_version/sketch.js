@@ -32,6 +32,12 @@ class Node{
     this.attach_nodes(neighbor);
   }
 
+  set_pos(x,y,variation){
+    this.xpos = random(x-variation, x+variation)
+    this.ypos = random(y-variation, y+variation)
+
+  }
+
   display_node(){
     let c = this.color
     fill(c);
@@ -171,6 +177,8 @@ function load_network(node_list,neighborhood_map){
     print("node_name: " + node_list[i])
     node = new Node(node_list[i], i, 100)
     global_node_list.push(node);
+
+    // Map node name to node object
     node_objs.set(node_list[i], node)
     // node.display()
   }
@@ -211,16 +219,8 @@ function setup() {
   res_arr = parse_input()
   mapping = res_arr[0];
   node_list = res_arr[1];
-  
-
-  // console.log("node_list: " + node_list);
-  // console.log("mapping: \n")
-  // mapping.forEach(function(value, key){
-  //   console.log(key + " = " + value);
-  // });
 
   load_network(node_list, mapping);
-  // test(50);
 }
 
 // Returns the node object that is clicked or selected
@@ -237,16 +237,10 @@ function mousePressed(){
       break;
     }
   }
-  // if(dist(this.x, this.y, mouseX, mouseY) < this.diameter/2){
-  //   this.dragging = true;
-  // }
 }
 
 function mouseReleased(){
   print("mouseReleased")
-  // for(i in global_node_list){
-  //   global_node_list[i].dragging = false;
-  // }
   dragging_node.dragging = false;
 }
 
@@ -256,12 +250,7 @@ function draw(){
   // This line fixes the dragging issue where it would show each frame of dragging
   background("white");
 
-  // for(i in global_node_list){
-  //   if (global_node_list[i].dragging == true){
-  //     global_node_list.xpos = mouseX;
-  //     global_node_list.ypos = mouseY;
-  //   }
-  // }
+  // Updating position of node while dragging
   for (i in global_node_list){
     if (global_node_list[i].dragging){
       console.log("Mousing is dragging")
@@ -270,14 +259,4 @@ function draw(){
     }
     global_node_list[i].display();
   }
-
-  // // Need to fix the coloring of each node
-  // for(i in global_node_list){
-  //   noStroke()
-
-  //   global_node_list[i].display();
-  // }
-  
-
-  // PUT SHOW FUNCTION IN HERE SO IT CAN UPDATE
 }
