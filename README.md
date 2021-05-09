@@ -31,14 +31,17 @@ Pearl<br>
 ![NetworkGrapherExample](https://user-images.githubusercontent.com/49283761/117202997-81ea3980-adbc-11eb-8b5d-767db98018ed.png)
 
 
+#### Example of dragging nodes
+![Network_Grapher_GIF](https://user-images.githubusercontent.com/49283761/117346012-334ca600-ae75-11eb-899b-440b3e641b23.gif)
+
+
+
 ### To-Do
-- [ ] Host code on server
+- [X] Dragging nodes 
 - [ ] Nodes are colored based on neighborhoods
-- [ ] Group nodes in the same neighborhood close to eachother -> adjust randomness of node location
 - [ ] If one nodes is in two or more different groups, blend the colors together for that node
-- [ ] Nodes do not collide with eachother (no overlapping)
 - [ ] Keep track of information about the network
 - [ ] Unlimited scrolling 
-- [ ] Dyanmic loading such that large amounts of data can be visualized incrementally
-- [ ] Zooming out/in changes the size of the node in order to see more nodes in a window
+- [ ] Dynamic loading such that large amounts of data can be visualized incrementally
+- [ ] Group nodes in the same neighborhood close to eachother -> adjust randomness of node location
 
