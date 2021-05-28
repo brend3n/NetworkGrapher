@@ -10,9 +10,9 @@ class Node{
 
     this.neighbors = [];
  
-    this.xpos = random(windowWidth);
-    this.ypos = random(windowHeight);
-    this.diameter = 100;
+    this.xpos = random(0,windowWidth);
+    this.ypos = random(0,windowHeight);
+    this.diameter = 15;
     this.dragging = false;
     this.changed = false;
   }
@@ -46,7 +46,7 @@ class Node{
 
     c = 0;
     fill(0)
-    textSize(100)
+    textSize(15)
     text(this.name, this.xpos, this.ypos)
   }
 
@@ -242,6 +242,29 @@ function mousePressed(){
 function mouseReleased(){
   print("mouseReleased")
   dragging_node.dragging = false;
+}
+
+function mouseWheel(event) {
+  // print(event.delta);
+  
+  width_z = 0
+  height_z = 0
+  if (mouseIsPressed){
+    width_z = -int(event.delta/10);
+    // print("width: " + width_z)
+  }else{
+  //move the square according to the vertical scroll amount
+  height_z = int(event.delta/10);
+  // print("height: " + height_z)
+
+  //uncomment to block page scrolling
+  // return false;
+  }
+  for(i in global_node_list){
+    global_node_list[i].xpos -= width_z;
+    global_node_list[i].ypos += height_z;
+  }
+  
 }
 
 var global_node_list = [];
