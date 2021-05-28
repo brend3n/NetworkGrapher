@@ -39,7 +39,6 @@ Pearl<br>
 ### To-Do
 - [X] Dragging nodes 
 - [ ] Nodes are colored based on neighborhoods
-- [ ] Unlimited scrolling 
-- [ ] Dynamic loading such that large amounts of data can be visualized incrementally
 - [ ] Group nodes in the same neighborhood close to eachother -> adjust randomness of node location
+- [X] Unlimited scrolling aka Dynamic loading such that large amounts of data can be visualized incrementally
 
