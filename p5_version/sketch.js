@@ -230,11 +230,17 @@ function selectedNode(){
 
 function mousePressed(){
   print("mousePressed")
-  for (i in global_node_list){
-    if(dist(global_node_list[i].xpos, global_node_list[i].ypos, mouseX, mouseY) < global_node_list[i].diameter/2){
-      global_node_list[i].dragging = true;
-      dragging_node = global_node_list[i];
-      break;
+  
+  if (mouseButton == RIGHT){
+    
+  }else{
+  
+    for (i in global_node_list){
+      if(dist(global_node_list[i].xpos, global_node_list[i].ypos, mouseX, mouseY) < global_node_list[i].diameter/2){
+        global_node_list[i].dragging = true;
+        dragging_node = global_node_list[i];
+        break;
+      }
     }
   }
 }
