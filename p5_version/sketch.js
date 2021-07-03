@@ -7,7 +7,6 @@ class Node{
     this.id = id;
     this.num_links = num_links;
     this.color = color(random(255),random(255),random(255));
-
     this.neighbors = [];
  
     this.xpos = random(0,windowWidth);
