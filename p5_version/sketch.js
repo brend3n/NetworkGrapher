@@ -1,5 +1,6 @@
 var dragging = false;
 var dragging_node;
+
 class Node{
 
   constructor(name, id, num_links){
@@ -57,17 +58,10 @@ class Node{
   }
 
   display(px, py){
-    // if (this.dragging){
-    //   console.log("Mousing is dragging")
-    //   this.xpos = mouseX;
-    //   this.ypos = mouseY;
-    // }
     this.display_node()
     this.display_links()
   }
 }
-
-
 
 function test(number_nodes){
   let node_arr = [];
@@ -88,10 +82,6 @@ function test(number_nodes){
   for(let i = 1; i < number_nodes; i++){
     node_arr[i].add_link(node_arr[i-1]);
   }
-  // node_arr[31].display();
-  // node_arr[30].display();
-
-  // node_arr[31].add_link(node_arr[30]);
 }
 
 // Not done yet... but would like to implement it
@@ -199,7 +189,6 @@ function load_network(node_list,neighborhood_map){
 
   
 }
-
 
 let result;
 function preload(){
