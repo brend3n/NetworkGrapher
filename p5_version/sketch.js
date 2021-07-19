@@ -1,6 +1,10 @@
 var dragging = false;
 var dragging_node;
 
+
+/*
+  START Class: Node
+*/
 class Node{
 
   constructor(name, id, num_links){
@@ -62,6 +66,10 @@ class Node{
     this.display_links()
   }
 }
+
+/*
+  END Class: Node
+*/
 
 function test(number_nodes){
   let node_arr = [];
@@ -211,13 +219,7 @@ function setup() {
   load_network(node_list, mapping);
 }
 
-// Returns the node object that is clicked or selected
-function selectedNode(){
-  // TODO
-}
-
 function mousePressed(){
-  print("mousePressed")
   
   if (mouseButton == RIGHT){
     
@@ -234,22 +236,18 @@ function mousePressed(){
 }
 
 function mouseReleased(){
-  print("mouseReleased")
   dragging_node.dragging = false;
 }
 
 function mouseWheel(event) {
-  // print(event.delta);
   
   width_z = 0
   height_z = 0
   if (mouseIsPressed){
     width_z = -int(event.delta/10);
-    // print("width: " + width_z)
   }else{
   //move the square according to the vertical scroll amount
   height_z = int(event.delta/10);
-  // print("height: " + height_z)
 
   //uncomment to block page scrolling
   // return false;
@@ -277,3 +275,7 @@ function draw(){
     global_node_list[i].display();
   }
 }
+
+
+
+// TODO: Change how interact with graph
