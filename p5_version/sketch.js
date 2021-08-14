@@ -21,7 +21,6 @@ class Node{
   }
 
   attach_nodes(neighbor){
-    // console.log("attach_nodes");
     this.neighbors.push(neighbor);
 
     // This was migrated to the display links class method
