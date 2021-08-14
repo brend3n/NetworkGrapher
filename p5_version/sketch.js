@@ -1,7 +1,6 @@
 var dragging = false;
 var dragging_node;
 
-
 /*
   START Class: Node
 */
@@ -194,8 +193,6 @@ function load_network(node_list,neighborhood_map){
       }
     }
   }
-
-  
 }
 
 let result;
@@ -224,7 +221,6 @@ function mousePressed(){
   if (mouseButton == RIGHT){
     
   }else{
-  
     for (i in global_node_list){
       if(dist(global_node_list[i].xpos, global_node_list[i].ypos, mouseX, mouseY) < global_node_list[i].diameter/2){
         global_node_list[i].dragging = true;
